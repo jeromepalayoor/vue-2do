@@ -11,7 +11,11 @@ const toCache = [
 	'images/icons/icon-72x72.png',
 	'images/icons/icon-96x96.png',
 	'sw.js',
-	'reg_sw.js'
+	'reg_sw.js',
+	'js/app.040f7609.js',
+	'js/app.040f7609.js.map',
+	'js/chunk-vendors.04ef3d15.js',
+	'js/chunk-vendors.04ef3d15.js.map'
 ]
 
 const assetCache = "asset";
