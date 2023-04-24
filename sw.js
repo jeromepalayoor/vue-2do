@@ -11,11 +11,7 @@ const toCache = [
 	'images/icons/icon-72x72.png',
 	'images/icons/icon-96x96.png',
 	'sw.js',
-	'reg_sw.js',
-	'js/app.040f7609.js',
-	'js/app.040f7609.js.map',
-	'js/chunk-vendors.04ef3d15.js',
-	'js/chunk-vendors.04ef3d15.js.map'
+	'reg_sw.js'
 ]
 
 const assetCache = "asset";
@@ -29,13 +25,39 @@ self.addEventListener('install', function (event) {
 	);
 });
 
-self.addEventListener('fetch', function (event) {
-	event.respondWith(
-		caches.match(event.request).then(function (response) {
-			if (response) {
-				return response;
-			}
-			return fetch(event.request);
-		})
-	);
-});
+self.addEventListener('fetch', event => {
+    const req = event.request
+    if (toCache.find(v => req.url.endsWith(v))) {
+        event.respondWith(
+            caches.open(assetCache)
+                .then(cache => cache.match(req))
+        )
+        return
+    }
+
+    event.respondWith(
+        fetch(req)
+            .then(resp => {
+                const copy = resp.clone()
+                event.waitUntil(
+                    caches.open(assetCache)
+                        .then(cache => cache.put(req, copy))
+                )
+                return resp
+            })
+            .catch(err => {
+                if (req.headers.get('Accept').includes('text/html')) {
+                    return caches.open(assetCache)
+                        .then(cache => cache.match(req))
+                        .then(resp => {
+                            if (!!resp)
+                                return resp
+                            return caches.open(assetCache)
+                                .then(cache => cache.match(req))
+                        })
+                }
+                return caches.match(req)
+                
+            }) 
+    ) 
+})
