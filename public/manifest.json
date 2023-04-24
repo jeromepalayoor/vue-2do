@@ -1,41 +1,13 @@
 {
-  "name": "Tech News Network",
-  "short_name": "TNN",
+  "name": "Vue 2DO",
+  "short_name": "2DO",
   "theme_color": "#2596be",
   "background_color": "#eab676",
-  "display": "standalone",
+  "display": "fullScreen",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
   "id": "/",
-  "shortcuts": [
-    {
-      "name": "Singapore Tech News",
-      "short_name": "Singapore",
-      "description": "All Tech news in SG",
-      "url": "/?country=sg",
-      "icons":[
-        {
-          "src": "/images/icons/icon-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Malaysia Tech News",
-      "short_name": "Malaysia",
-      "description": "All Tech news in ML",
-      "url": "/?country=ml",
-      "icons":[
-        {
-          "src": "/images/icons/icon-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    }
-  ],
   "icons": [
     {
       "src": "/images/icons/icon-72x72.png",
@@ -65,6 +37,11 @@
     {
       "src": "/images/icons/icon-192x192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icons/icon-384x384.png",
+      "sizes": "384x384",
       "type": "image/png"
     },
     {
